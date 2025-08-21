@@ -1,8 +1,10 @@
 // index.jsx
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom"; // ✅ tambahin ini
 import App from "./App";
-import Loader from "./components/Loader";
+import LoadingScreen from "./components/LoadingScreen";
+
 
 function ErrorBoundary({ children }) {
   const [error, setError] = useState(null);
@@ -16,11 +18,7 @@ function ErrorBoundary({ children }) {
     );
   }
 
-  return (
-    <React.Suspense fallback={<Loader />}>
-      {children}
-    </React.Suspense>
-  );
+  return <React.Suspense fallback={<Loader />}>{children}</React.Suspense>;
 }
 
 function Main() {
@@ -37,7 +35,10 @@ function Main() {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <Main />
+      {/* ✅ Bungkus App dengan BrowserRouter */}
+      <BrowserRouter basename="/Ravaka-Web">
+        <Main />
+      </BrowserRouter>
     </ErrorBoundary>
   </React.StrictMode>
 );
