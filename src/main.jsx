@@ -18,7 +18,7 @@ function ErrorBoundary({ children }) {
     );
   }
 
-  return <React.Suspense fallback={<Loader />}>{children}</React.Suspense>;
+  return <React.Suspense fallback={<LoadingScreen />}>{children}</React.Suspense>;
 }
 
 function Main() {
@@ -29,7 +29,7 @@ function Main() {
     return () => clearTimeout(timer);
   }, []);
 
-  return loading ? <Loader /> : <App />;
+  return loading ? <LoadingScreen /> : <App />;
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
